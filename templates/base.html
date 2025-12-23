@@ -26,14 +26,14 @@
             </form>
           </div>
         <div class="col-4 d-flex justify-content-end align-items-center">
-            {% if not user.is_authuenticated %}
-             <a class="btn btn-sm btn-warning" href="#">Login</a> &nbsp;
+            {% if not user.is_authenticated %}
+             <a class="btn btn-sm btn-warning" href="{% url 'login' %}">Login</a> &nbsp;
              <a class="btn btn-sm btn-outline-secondary" href="#">Register</a>
             {% else %}
             <span> <a href="#">Dashboard</a></span>
             &emsp;
 
-            <span> <a href="#">Logout</a></span>
+            <span> <a href="{% url 'logout' %}">Logout</a></span>
             {% endif %}
         </div>
         </div>

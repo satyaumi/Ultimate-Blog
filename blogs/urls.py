@@ -8,8 +8,8 @@ from . import views
 
 urlpatterns = [
     path('<int:category_id>/',views.post_by_category,name='post_by_category')
-   
     
+      
     # path('post/<int:post_id>/edit/',views.edit_post,name='edit_post'),
 
       

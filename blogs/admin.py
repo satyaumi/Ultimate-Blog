@@ -1,4 +1,6 @@
 from django.contrib import admin
+
+from assignments.models import About
 from .models import Category
 from .models import Blog
 

@@ -3,7 +3,7 @@ from django.contrib import admin
 from assignments.models import About
 from .models import Category
 from .models import Blog
-
+from .models import Comment
 # Register your models here.
 class BlogAdmin(admin.ModelAdmin):
     prepopulated_fields ={'slug':('title',)}
@@ -13,4 +13,5 @@ class BlogAdmin(admin.ModelAdmin):
 
 admin.site.register(Category)
 admin.site.register(Blog)
+admin.site.register(Comment)
 

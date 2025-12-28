@@ -1,0 +1,140 @@
+/* =====================
+   HEADER / NAVBAR
+===================== */
+
+.custom-navbar {
+    background: linear-gradient(90deg, #4b6cb7, #182848);
+    padding: 12px 0;
+}
+
+.logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: #fff !important;
+    font-weight: 700;
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Search */
+.search-box {
+    max-width: 420px;
+    width: 100%;
+}
+
+.search-input {
+    border-radius: 30px 0 0 30px;
+    border: none;
+    padding: 8px 16px;
+}
+
+.btn-search {
+    border-radius: 0 30px 30px 0;
+    background: #ffc107;
+    border: none;
+    color: #000;
+}
+
+.btn-search:hover {
+    background: #ffb300;
+}
+
+/* Nav links */
+.nav-hover {
+    color: #f8f9fa !important;
+    margin-right: 10px;
+    transition: color 0.3s ease;
+}
+
+.nav-hover:hover {
+    color: #ffc107 !important;
+}
+
+/* Buttons */
+.btn-login {
+    background: transparent;
+    border: 1px solid #ffc107;
+    color: #ffc107;
+    border-radius: 20px;
+    padding: 6px 16px;
+}
+
+.btn-login:hover {
+    background: #ffc107;
+    color: #000;
+}
+
+.btn-register {
+    background: #ffc107;
+    color: #000;
+    border-radius: 20px;
+    padding: 6px 16px;
+}
+
+.btn-register:hover {
+    background: #ffb300;
+}
+
+.btn-logout {
+    background: #dc3545;
+    color: #fff;
+    border-radius: 20px;
+    padding: 6px 16px;
+}
+
+.btn-logout:hover {
+    background: #c82333;
+}
+
+
+
+/* ===== STICKY FOOTER FIX ===== */
+
+/* ===== STICKY FOOTER (FINAL FIX) ===== */
+
+/* ===== GUARANTEED STICKY FOOTER FIX ===== */
+
+/* ===== STICKY FOOTER FIX ===== */
+
+/* ===== PERFECT FOOTER (NO EXTRA SPACE) ===== */
+
+/* ===== TRUE STICKY FOOTER (NO MOVEMENT) ===== */
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Main content fills remaining space */
+#page-content {
+    flex: 1;
+    min-height: calc(100vh - 160px);
+    /* 160px ≈ header + footer height */
+}
+
+/* Footer */
+.blog-footer {
+    background: #f8f9fa;
+    border-top: 1px solid #e5e5e5;
+    padding: 12px 0;
+    text-align: center;
+}
+
+.footer-inner {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+
+

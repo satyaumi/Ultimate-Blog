@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import AddUserForm, BlogPostForm, CategoryForm,EditUserForm
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
+from django.contrib.auth import logout
 @login_required(login_url='login')
 def dashboard(request):
     category_count =Category.objects.count()
@@ -158,3 +159,9 @@ def delete_user(request,pk):
     user =get_object_or_404(User,pk=pk)
     user.delete()
     return redirect('users')
+
+
+def logout_user(request):
+
+    logout(request)
+    return redirect('login')

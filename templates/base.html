@@ -3,90 +3,76 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ultimate Blogs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
-    <link href="{% static 'css/blog.css' %}" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <style>
-        html, body {
-            height: 100%;
-        }
-
-        body {
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* MAIN CONTENT AREA */
-        .page-wrapper {
-            flex: 1;                 /* Push footer to bottom */
-            padding-bottom: 80px;    /* Space above footer */
-        }
-
-        /* FOOTER */
-        .blog-footer {
-            background-color: #f8f9fa;
-            border-top: 1px solid #e0e0e0;
-            padding: 25px 0;
-            text-align: center;
-            font-size: 14px;
-            color: #555;
-        }
-
-        .blog-footer a {
-            color: #0d6efd;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .blog-footer a:hover {
-            text-decoration: underline;
-        }
-    </style>
 </head>
 
 <body>
 
-<div class="container">
-    <!-- HEADER -->
-    <header class="blog-header py-3">
-        <div class="row flex-nowrap justify-content-between align-items-center">
-            <div class="col-4 pt-1">
-                <a class="blog-header-logo text-dark" href="/">Django Blog</a>
-            </div>
+<div class="page-wrapper">
+<!-- ===== NAVBAR START ===== -->
+<nav class="navbar navbar-expand-lg custom-navbar sticky-top">
+    <div class="container">
 
-            <div class="col-4">
-                <form action="{% url 'search' %}" method="GET">
-                    <div class="input-group">
-                        <input class="form-control" type="text" name="keyword"
-                               value="{{ keyword }}" placeholder="Enter search term...">
-                        <button class="btn btn-warning" type="submit">Go!</button>
-                    </div>
-                </form>
-            </div>
+        <!-- Logo -->
+        <a class="navbar-brand logo-text" href="/">Ultimate Blog</a>
 
-            <div class="col-4 d-flex justify-content-end align-items-center">
-                {% if not user.is_authenticated %}
-                    <a class="btn btn-sm btn-warning" href="{% url 'login' %}">Login</a>&nbsp;
-                    <a class="btn btn-sm btn-outline-secondary" href="{% url 'register' %}">Register</a>
+        <!-- Mobile Toggle -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar Content -->
+        <div class="collapse navbar-collapse" id="mainNavbar">
+
+            <!-- Center Search -->
+            <form class="form-inline mx-auto search-box" action="{% url 'search' %}" method="GET">
+                <input class="form-control search-input" type="search" name="keyword"
+                       value="{{ keyword }}" placeholder="Search articles...">
+                <button class="btn btn-search p-2" type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+            </form>
+
+            <!-- Right Menu -->
+            <ul class="navbar-nav ml-auto align-items-center">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link nav-hover" href="{% url 'dashboard' %}">
+                            <i class="fa fa-dashboard"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item ml-2">
+                        <a class="btn btn-logout" href="{% url 'logout' %}">Logout</a>
+                    </li>
                 {% else %}
-                    <a href="{% url 'dashboard' %}">Dashboard</a>&emsp;
-                    <a href="{% url 'logout' %}">Logout</a>
+                    <li class="nav-item">
+                        <a class="btn btn-login" href="{% url 'login' %}">Login</a>
+                    </li>
+                    <li class="nav-item ml-2">
+                        <a class="btn btn-register" href="{% url 'register' %}">Register</a>
+                    </li>
                 {% endif %}
-            </div>
-        </div>
-    </header>
+            </ul>
 
-    <!-- CATEGORIES -->
-    <div class="nav-scroller py-1 mb-2">
+        </div>
+    </div>
+</nav>
+<!-- ===== NAVBAR END ===== -->
+
+<!-- ===== CATEGORY SCROLLER ===== -->
+<div class="nav-scroller py-2 mb-3 bg-light">
+    <div class="container">
         <nav class="nav d-flex justify-content-between">
             {% for cat in categories %}
-                <a class="p-2 text-muted" href="{% url 'post_by_category' cat.id %}">
+                <a class="p-2 text-muted category-link"
+                   href="{% url 'post_by_category' cat.id %}">
                     {{ cat.category_name }}
                 </a>
             {% endfor %}
@@ -94,19 +80,45 @@
     </div>
 </div>
 
-<!-- ✅ MAIN CONTENT WRAPPER (IMPORTANT) -->
-<div class="container page-wrapper mt-4">
+ {% comment %} <main class=" content">
+    <div class="container mt-4">
+        {% block content %}{% endblock %}
+    </div>
+</main>  {% endcomment %}
+
+{% comment %} <!-- ===== MAIN CONTENT ===== -->
+<main class="container mt-4">
     {% block content %}
     {% endblock %}
-</div>
+</main> {% endcomment %}
+
+<!-- MAIN CONTENT -->
+<main id="page-content">
+    <div class="container mt-4">
+        {% block content %}
+        {% endblock %}
+    </div>
+</main>
+
 
 <!-- FOOTER -->
 <footer class="blog-footer">
-    <p class="mb-1">
-        Django Blog built with ❤️ by <a href="https://github.com/satyaumi/django-blocg" target="_blank">Satya sundar</a>
-    </p>
-    <small>© All Rights Reserved</small>
+    <div class="footer-inner">
+        <span>
+            Django Blog built with ❤️ by
+            <a href="https://github.com/satyaumi/django-blocg" target="_blank">
+                Satya Sundar
+            </a>
+        </span>
+        <span class="d-block">© All Rights Reserved</span>
+    </div>
 </footer>
+
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js"></script>
 
 </body>
 </html>

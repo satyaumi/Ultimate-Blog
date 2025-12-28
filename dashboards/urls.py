@@ -22,5 +22,8 @@ urlpatterns = [
     path('users/edit/<int:pk>/',views.edit_user,name='edit_user'),
     path('users/delete/<int:pk>/',views.delete_user,name='delete_user'),
 
+    #logout
+    path('users/logout/',views.logout_user,name='logout'),
+
 
 ]

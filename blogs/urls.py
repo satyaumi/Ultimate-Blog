@@ -11,7 +11,7 @@ urlpatterns = [
     
       
     # path('post/<int:post_id>/edit/',views.edit_post,name='edit_post'),
-
+    
       
 ] +static(settings.MEDIA_URL, document_root =settings.MEDIA_ROOT)
 

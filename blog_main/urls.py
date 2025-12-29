@@ -36,6 +36,9 @@ urlpatterns = [
     path('dashboard/',include('dashboards.urls')),
     # path('post/<int:post_id>/edit/',views.edit_post,name='edit_post'),
 
+    #authurl
+    path('accounts/',include('django.contrib.auth.urls')),
+    
       
 ] +static(settings.MEDIA_URL, document_root =settings.MEDIA_ROOT)
 
